@@ -24,3 +24,7 @@ This README outlines the details of collaborating on this Ember addon.
 * `ember build`
 
 For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+
+## Some useful links
+
+* [Using npm libraries in Ember CLI](https://simplabs.com/blog/2017/02/13/npm-libs-in-ember-cli.html) - let's stop using Bower. End the madness!
