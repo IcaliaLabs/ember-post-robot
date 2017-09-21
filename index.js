@@ -1,8 +1,9 @@
 /* eslint-env node */
 'use strict';
 
+const path = require('path');
 const Funnel = require('broccoli-funnel');
-const mergeTrees = require('broccoli-merge-trees');
+const MergeTrees = require('broccoli-merge-trees');
 
 module.exports = {
   name: 'ember-post-robot',
@@ -10,7 +11,7 @@ module.exports = {
   included(app) {
     this._super.included(app);
 
-    this.app.import('node_modules/post-robot/dist/post-robot.js', {
+    this.app.import('vendor/post-robot.js', {
       type: 'vendor'
     });
 
@@ -20,16 +21,15 @@ module.exports = {
     });
   },
 
-  // Override the vendor tree to include the post-robot javascript dist files:
-  treeForVendor(tree) {
-    const vendorTrees = [];
+  treeForVendor(vendorTree) {
+    var postRobotPath = path.join(this.project.root, 'node_modules', 'post-robot', 'dist');
+    var postRobotTree = new Funnel(postRobotPath, {
+      files: [
+        'post-robot.js',
+        'post-robot.js.map',
+      ],
+    });
 
-    vendorTrees.push(new Funnel('node_modules/post-robot/dist', { destDir: '.' }));
-
-    if (tree) {
-      vendorTrees.push(tree);
-    }
-
-    return mergeTrees(vendorTrees, { overwrite: true });
-  }
+    return new MergeTrees([vendorTree, postRobotTree]);
+  },
 };
