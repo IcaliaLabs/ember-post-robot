@@ -1,6 +1,6 @@
 {
   "name": "ember-post-robot",
-  "version": "0.0.0-build2",
+  "version": "0.0.0-build3",
   "description": "The default blueprint for ember-cli addons.",
   "keywords": [
     "ember-addon"
